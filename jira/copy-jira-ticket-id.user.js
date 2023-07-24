@@ -28,7 +28,7 @@ function addCopyTextID() {
         var a = document.createElement('a');
         a.id = 'copy-text-id';
         a.href = 'javascript:navigator.clipboard.writeText("'+ ticketID +'");';
-        a.textContent = 'Copy Ticket ID';
+        a.textContent = '[Copy Ticket ID]';
         div.appendChild(a);
         element.appendChild(div);
     }
