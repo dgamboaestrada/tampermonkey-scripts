@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         copy-jira-ticket-id
 // @namespace    https://danielgamboa.mx/
-// @version      0.1
+// @version      0.2
 // @description  Copy Jira Id task
 // @author       Daniel Gamboa Estrada
 // @match        https://*.atlassian.net/browse/*
@@ -23,13 +23,13 @@ function addCopyTextID() {
 
     if (copyTextId == null && issueLink != null) {
         var ticketID = document.querySelector('a[data-testid="issue.views.issue-base.foundation.breadcrumbs.current-issue.item"] span').textContent;
-        var element = document.querySelector('.css-1src8bx.er2v6i55');
+        var element = document.querySelector('#jira-issue-header');
         var div = document.createElement('div');
         var a = document.createElement('a');
         a.id = 'copy-text-id';
         a.href = 'javascript:navigator.clipboard.writeText("'+ ticketID +'");';
         a.textContent = '[Copy Ticket ID]';
         div.appendChild(a);
-        element.appendChild(div);
+        element.prepend(div);
     }
 }
