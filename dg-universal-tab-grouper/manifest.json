@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Universal Tab Grouper",
+  "version": "0.1",
+  "description": "Groups tabs into custom groups using userscripts from any website.",
+  "permissions": ["tabs", "tabGroups"],
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*/*",
+        "http://*/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

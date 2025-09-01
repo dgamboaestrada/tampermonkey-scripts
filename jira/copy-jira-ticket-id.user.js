@@ -24,12 +24,21 @@ function addCopyTextID() {
     if (copyTextId == null && issueLink != null) {
         var ticketID = document.querySelector('a[data-testid="issue.views.issue-base.foundation.breadcrumbs.current-issue.item"] span').textContent;
         var element = document.querySelector('#jira-issue-header');
-        var div = document.createElement('div');
+        
+        // Get or create shared container
+        var container = document.getElementById('dg-jira-buttons');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'dg-jira-buttons';
+            container.style.display = 'flex';
+            container.style.gap = '10px';
+            element.prepend(container);
+        }
+        
         var a = document.createElement('a');
         a.id = 'copy-text-id';
         a.href = 'javascript:navigator.clipboard.writeText("'+ ticketID +'");';
         a.textContent = '[Copy Ticket ID]';
-        div.appendChild(a);
-        element.prepend(div);
+        container.appendChild(a);
     }
 }
