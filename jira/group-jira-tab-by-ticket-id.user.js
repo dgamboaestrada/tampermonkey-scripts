@@ -47,14 +47,22 @@
             var element = document.querySelector('#jira-issue-header');
             if (!element) return;
 
-            var div = document.createElement('div');
+            // Get or create shared container
+            var container = document.getElementById('dg-jira-buttons');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'dg-jira-buttons';
+                container.style.display = 'flex';
+                container.style.gap = '10px';
+                element.prepend(container);
+            }
+
             var a = document.createElement('a');
             a.id = 'group-tabs-button';
             a.href = 'javascript:void(0);';
             a.textContent = '[Create Tab Group]';
             a.onclick = createTicketGroup;
-            div.appendChild(a);
-            element.prepend(div);
+            container.appendChild(a);
         }
     }
 
