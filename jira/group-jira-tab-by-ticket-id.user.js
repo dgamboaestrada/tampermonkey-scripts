@@ -2,7 +2,7 @@
 // @name         group-jira-tab-by-ticket-id
 // @namespace    https://danielgamboa.mx/
 // @version      0.1
-// @description  Agrupa la pestaña en Chrome con el nombre del ID del ticket de Jira
+// @description  Groups Chrome tabs with Jira ticket ID name
 // @author       Daniel Gamboa Estrada
 // @match        https://*.atlassian.net/browse/*
 // @match        https://*.atlassian.net/jira/*
@@ -28,7 +28,7 @@
         var id = getTicketId();
         if (!id) return;
 
-        // Enviar mensaje para crear grupo (si la extensión está instalada)
+        // Send message to create group (if extension is installed)
         window.postMessage({
             type: 'DG_CREATE_TAB_GROUP',
             groupName: id,
@@ -58,6 +58,6 @@
         }
     }
 
-    // Detección periódica (para SPA de Jira y cambios de ruta)
+    // Periodic detection (for Jira SPA and route changes)
     setInterval(addGroupButton, 1500);
 })();

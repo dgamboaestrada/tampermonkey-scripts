@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Universal Tab Grouper",
   "version": "0.1",
-  "description": "Agrupa pestañas en grupos personalizados usando userscripts de cualquier sitio web.",
+  "description": "Groups tabs into custom groups using userscripts from any website.",
   "permissions": ["tabs", "tabGroups"],
   "host_permissions": [
     "https://*/*",

@@ -5,18 +5,18 @@ chrome.runtime.onMessage.addListener((message, sender) => {
     const groupName = message.groupName;
     const groupColor = message.color || 'grey';
 
-    // Buscar si ya existe un grupo con este nombre
+    // Check if a group with this name already exists
     chrome.tabGroups.query({}, (groups) => {
         const existingGroup = groups.find(group => group.title === groupName);
 
         if (existingGroup) {
-            // Agregar al grupo existente
+            // Add to existing group
             chrome.tabs.group({
                 groupId: existingGroup.id,
                 tabIds: tabId
             });
         } else {
-            // Crear nuevo grupo
+            // Create new group
             chrome.tabs.group({ tabIds: tabId }, (groupId) => {
                 if (chrome.runtime.lastError || groupId === undefined) return;
                 chrome.tabGroups.update(groupId, {

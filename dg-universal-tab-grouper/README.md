@@ -1,74 +1,74 @@
 # Universal Tab Grouper
 
-Una extensión genérica de Chrome para agrupar pestañas usando userscripts de Tampermonkey en cualquier sitio web.
+A generic Chrome extension for grouping tabs using Tampermonkey userscripts from any website.
 
-## Instalación
+## Installation
 
-1. Abre `chrome://extensions/`
-2. Activa "Modo de desarrollador" (Developer mode)
-3. Haz clic en "Cargar extensión sin empaquetar" (Load unpacked)
-4. Selecciona esta carpeta `chrome-extension`
+1. Open `chrome://extensions/`
+2. Enable "Developer mode"
+3. Click "Load unpacked"
+4. Select this `dg-universal-tab-grouper` folder
 
-## Uso en Userscripts
+## Usage in Userscripts
 
-Para usar esta extensión desde cualquier userscript, envía un mensaje usando:
+To use this extension from any userscript, send a message using:
 
 ```javascript
 window.postMessage({
     type: 'DG_CREATE_TAB_GROUP',
-    groupName: 'Mi Grupo',
-    color: 'blue' // opcional, por defecto 'blue'
+    groupName: 'My Group',
+    color: 'grey' // optional, defaults to 'grey'
 }, '*');
 ```
 
-### Verificar disponibilidad
+### Check Availability
 
-Para verificar si la extensión está instalada:
+To check if the extension is installed:
 
 ```javascript
-// Verificar disponibilidad
+// Check availability
 window.postMessage({ type: 'DG_CHECK_TAB_GROUPER' }, '*');
 
-// Escuchar respuesta
+// Listen for response
 window.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'DG_TAB_GROUPER_AVAILABLE') {
-        // Extensión disponible
+        // Extension available
     }
 });
 ```
 
-### Colores disponibles
+### Available Colors
 - `grey`, `blue`, `red`, `yellow`, `green`, `pink`, `purple`, `cyan`, `orange`
 
-### Ejemplo de userscript
+### Example Userscript
 
 ```javascript
 // ==UserScript==
-// @name         Mi Agrupador
-// @match        https://ejemplo.com/*
+// @name         My Tab Grouper
+// @match        https://example.com/*
 // @grant        none
 // ==/UserScript==
 
-function crearGrupo() {
-    const nombreGrupo = document.title; // o cualquier lógica
+function createGroup() {
+    const groupName = document.title; // or any logic
     
     window.postMessage({
         type: 'DG_CREATE_TAB_GROUP',
-        groupName: nombreGrupo,
+        groupName: groupName,
         color: 'green'
     }, '*');
 }
 
-// Agregar botón o llamar automáticamente
+// Add button or call automatically
 ```
 
-## Características
+## Features
 
-- **Universal**: Funciona en cualquier sitio web
-- **Inteligente**: Si el grupo ya existe, agrega la pestaña al grupo existente
-- **Personalizable**: Permite especificar nombre y color del grupo
-- **Compatible**: Funciona con cualquier userscript de Tampermonkey
+- **Universal**: Works on any website
+- **Smart**: If the group already exists, adds the tab to the existing group
+- **Customizable**: Allows specifying group name and color
+- **Compatible**: Works with any Tampermonkey userscript
 
-## Ejemplo incluido
+## Included Example
 
-El userscript `group-jira-tab-by-ticket-id.user.js` muestra cómo usar la extensión para agrupar pestañas de Jira por ID de ticket.
+The userscript `group-jira-tab-by-ticket-id.user.js` shows how to use the extension to group Jira tabs by ticket ID.
